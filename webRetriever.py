@@ -54,16 +54,11 @@ def check_href_tags():
 	print (Fore.BLUE + "---------- Checking HREF tags ----------")
 	for urls in store_urls:
 		if urls.startswith( '/' ):
-		# print "{}".format(urls)
 			check_url = "http://www.{}{}".format(website,urls)
-		# print check_url
 			open_web = urllib2.urlopen(check_url)
 			try : open_web
 			except urllib2.HTTPError as notfound:
 				print
-				# print (Fore.BLUE + str(notfound) + "> {}".format(check_url))
-			# if " HTTP Error 301" in open_web:
-			# 	print ""
 			check_status = open_web.getcode()
 			if check_status == 200:
 				print (Fore.GREEN + "{} is GOOD !  STATUS:{}".format(check_url, check_status))
@@ -76,7 +71,6 @@ def check_http_tags():
 	print "---------- Checking HTTP tags ----------"
 	for urls in store_urls:
 		if "http://" in urls:
-			# print "->. {}".format(urls)
 			open_web = urllib2.urlopen(urls)
 			# try: open_web
 			# except urllib2.HTTPError as notfound:
@@ -104,12 +98,9 @@ def check_https_tags():
 				print (Fore.RED + "ALERT !!! {} is BAD !  STATUS:{}".format(urls, check_status))
 				bad_urls.append(urls)
 retrieve_info()
-# print "]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"
-# print store_urls
 
 print "------------------------<>---------------------------"
 # bad_urls = []
-
 
 		# print bad_urls
 
