@@ -72,10 +72,6 @@ def check_http_tags():
 	for urls in store_urls:
 		if "http://" in urls:
 			open_web = urllib2.urlopen(urls)
-			# try: open_web
-			# except urllib2.HTTPError as notfound:
-			# 	print notfound
-			# 	print (Fore.YELLOW + str(notfound) + "> {}".format(urls))
 			check_status = open_web.getcode()
 			if check_status == 200:
 				print (Fore.GREEN + "{} is GOOD !  STATUS:{}".format(urls, check_status))
@@ -101,11 +97,8 @@ retrieve_info()
 
 print "------------------------<>---------------------------"
 # bad_urls = []
-
 		# print bad_urls
-
 		# print(Fore.RED + 'some red text')
-
 		
 	# 	for fail in bad_urls:
 	# 		print fail
