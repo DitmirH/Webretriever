@@ -36,7 +36,7 @@ def retrieve_info():
 	elif user_choice == 4:
 		print "Retrieving all p tags ....."
 		for ptags in soup.find_all("p"):
-			print ptagtext.get_text()
+			print ptag.get_text()
 	elif user_choice == 5:
 		for ptagtext in soup.find_all("p"):
 			print ptagtext.get_text()
@@ -74,9 +74,9 @@ def check_http_tags():
 			open_web = urllib2.urlopen(urls)
 			check_status = open_web.getcode()
 			if check_status == 200:
-				print (Fore.GREEN + "{} is GOOD !  STATUS:{}".format(urls, check_status))
+				print (Fore.GREEN + "{} is GOOD !  STATUS:  {}".format(urls, check_status))
 			elif check_status != 200:
-				print (Fore.RED + "ALERT !!! {} is BAD !  STATUS:{}".format(urls, check_status))
+				print (Fore.RED + "ALERT !!! {} is BAD !  STATUS:  {}".format(urls, check_status))
 				bad_urls.append(urls)
 
 def check_https_tags():
@@ -89,9 +89,9 @@ def check_https_tags():
 				print (Fore.YELLOW + str(notfound) + "> {}".format(urls))
 			check_status = open_web.getcode()
 			if check_status == 200:
-				print (Fore.GREEN + "{} is GOOD !  STATUS:{}".format(urls, check_status))
+				print (Fore.GREEN + "{} is GOOD !  STATUS:  {}".format(urls, check_status))
 			elif check_status != 200:
-				print (Fore.RED + "ALERT !!! {} is BAD !  STATUS:{}".format(urls, check_status))
+				print (Fore.RED + "ALERT !!! {} is BAD !  STATUS:  {}".format(urls, check_status))
 				bad_urls.append(urls)
 retrieve_info()
 
