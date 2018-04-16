@@ -20,13 +20,10 @@ def retrieve_info():
 		# print "The following links were retrieved from {}".format(web_page_load)
 		for links in soup.find_all("a"):
 			href = links.get("href")
-			# print href
-			# print "{}".format(links.get("href"))
 			store_urls.append(href)
 		check_href_tags()
 		check_http_tags()
 		check_https_tags()
-		# print links
 	elif user_choice == 2:
 			print "The Raw page looks like this :{}".format(soup)
 	elif user_choice == 3:
