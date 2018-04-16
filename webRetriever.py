@@ -65,7 +65,7 @@ def check_href_tags():
 				print ""
 
 def check_http_tags():
-	print "---------- Checking HTTP tags ----------"
+	print (Fore.BLUE + "---------- Checking HTTP tags ----------")
 	for urls in store_urls:
 		if "http://" in urls:
 			open_web = urllib2.urlopen(urls)
@@ -77,7 +77,7 @@ def check_http_tags():
 				bad_urls.append(urls)
 
 def check_https_tags():
-	print "---------- Checking HTTPS tags ----------"
+	print (Fore.BLUE + "---------- Checking HTTPS tags ----------")
 	for urls in store_urls:
 		if "https://" in urls:
 			open_web = urllib2.urlopen(urls)
