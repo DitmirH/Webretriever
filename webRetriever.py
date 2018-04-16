@@ -20,13 +20,10 @@ def retrieve_info():
 		# print "The following links were retrieved from {}".format(web_page_load)
 		for links in soup.find_all("a"):
 			href = links.get("href")
-			# print href
-			# print "{}".format(links.get("href"))
 			store_urls.append(href)
 		check_href_tags()
 		check_http_tags()
 		check_https_tags()
-		# print links
 	elif user_choice == 2:
 			print "The Raw page looks like this :{}".format(soup)
 	elif user_choice == 3:
@@ -36,7 +33,7 @@ def retrieve_info():
 	elif user_choice == 4:
 		print "Retrieving all p tags ....."
 		for ptags in soup.find_all("p"):
-			print ptagtext.get_text()
+			print ptag.get_text()
 	elif user_choice == 5:
 		for ptagtext in soup.find_all("p"):
 			print ptagtext.get_text()
@@ -68,19 +65,19 @@ def check_href_tags():
 				print ""
 
 def check_http_tags():
-	print "---------- Checking HTTP tags ----------"
+	print (Fore.BLUE + "---------- Checking HTTP tags ----------")
 	for urls in store_urls:
 		if "http://" in urls:
 			open_web = urllib2.urlopen(urls)
 			check_status = open_web.getcode()
 			if check_status == 200:
-				print (Fore.GREEN + "{} is GOOD !  STATUS:{}".format(urls, check_status))
+				print (Fore.GREEN + "{} is GOOD !  STATUS:  {}".format(urls, check_status))
 			elif check_status != 200:
-				print (Fore.RED + "ALERT !!! {} is BAD !  STATUS:{}".format(urls, check_status))
+				print (Fore.RED + "ALERT !!! {} is BAD !  STATUS:  {}".format(urls, check_status))
 				bad_urls.append(urls)
 
 def check_https_tags():
-	print "---------- Checking HTTPS tags ----------"
+	print (Fore.BLUE + "---------- Checking HTTPS tags ----------")
 	for urls in store_urls:
 		if "https://" in urls:
 			open_web = urllib2.urlopen(urls)
@@ -89,9 +86,9 @@ def check_https_tags():
 				print (Fore.YELLOW + str(notfound) + "> {}".format(urls))
 			check_status = open_web.getcode()
 			if check_status == 200:
-				print (Fore.GREEN + "{} is GOOD !  STATUS:{}".format(urls, check_status))
+				print (Fore.GREEN + "{} is GOOD !  STATUS:  {}".format(urls, check_status))
 			elif check_status != 200:
-				print (Fore.RED + "ALERT !!! {} is BAD !  STATUS:{}".format(urls, check_status))
+				print (Fore.RED + "ALERT !!! {} is BAD !  STATUS:  {}".format(urls, check_status))
 				bad_urls.append(urls)
 retrieve_info()
 
