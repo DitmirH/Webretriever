@@ -14,10 +14,9 @@ print "-------------------------------------"
 
 store_urls = []
 def retrieve_info():
-	user_choice = int(input("Please select from the following options :  \n [1] Retrieve links from page, \n [2] Raw Page \n"
-		" [3] Raw Links \n [4] Return all visible 'p' tags \n [5] Retrieve all text within p tags  \n [9] Exit  \n >>> "))
+	user_choice = int(input("Please select from the following options :  \n [1] Retrieve links and status \n [2] Raw Page \n"
+		" [3] Raw Links \n [4] Return all visible 'p' tags \n [5] Retrieve all text within p tags \n [7] retrieve all links \n [9] Exit  \n >>> "))
 	if user_choice == 1:
-		# print "The following links were retrieved from {}".format(web_page_load)
 		for links in soup.find_all("a"):
 			href = links.get("href")
 			store_urls.append(href)
@@ -37,10 +36,15 @@ def retrieve_info():
 	elif user_choice == 5:
 		for ptagtext in soup.find_all("p"):
 			print ptagtext.get_text()
+	elif user_choice == 7:
+		for links in soup.find_all("a"):
+			href = links.get("href")
+			store_urls.append(href)
+		get_all_links_from_page()
 	elif user_choice == 9:
 		print 'Goodbye !'
 		sys.exit()
-	elif user_choice != 1 or 2 or 3 or 4 or 5 or 9:
+	elif user_choice != 1 or 2 or 3 or 4 or 5 or 7 or 9:
 		retry = raw_input("You have not made a valid selection , would you like to rety ? Y/N : " )
 		if retry == 'y' or 'Y':
 			retrieve_info()
@@ -90,17 +94,17 @@ def check_https_tags():
 			elif check_status != 200:
 				print (Fore.RED + "ALERT !!! {} is BAD !  STATUS:  {}".format(urls, check_status))
 				bad_urls.append(urls)
+
+def get_all_links_from_page():
+	for urls in store_urls:
+		if urls.startswith( '/' ):
+			print "http://www.{}{}".format(website,urls)
+		if "https://" in urls:
+			print urls
+		if "https://" in urls:
+			print urls
+
 retrieve_info()
 
 print "------------------------<>---------------------------"
-# bad_urls = []
-		# print bad_urls
-		# print(Fore.RED + 'some red text')
-		
-	# 	for fail in bad_urls:
-	# 		print fail
-
-	# # 	print 'links start with www >>> {}'.format(urls)
-	# # elif 'https://' in urls:
-	# # 	print "links with https:// >> {}".format(urls)
 
